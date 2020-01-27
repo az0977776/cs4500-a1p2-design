@@ -1,6 +1,5 @@
-Object class
-Objects have a constructor that takes no arguments, a destructor, an equality checker against another object 
-and a hash function.
+The Object class and the String class are taken from https://piazza.com/class/k51bluky59n2jr?cid=166
+to attempt to standardize those two objects for everyone in this class
 
 Map class
 Maps are a subclass of the Object class.
