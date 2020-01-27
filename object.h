@@ -1,18 +1,29 @@
 //lang::CwC
 #pragma once
-
-// represents an object
-class Object {
-    public:
-        // default constructor
-        Object() {}
-
-        // destructor
-        virtual ~Object() {}
-
-        // check if this object is equal to another object
-        virtual bool equals(Object *other);
-
-        // hash function
-        virtual int hash();
-};
+#include <stdlib.h>
+                                                                                                                                             
+/**                                                                              
+ * A class that represents the top of the object hierarchy.                      
+ * author: mainly vitekj@me.com */                                                      
+class Object {                                                      
+    public:                                                                                                                                                          
+        /** Default constructor ensure that hash is initialized */                     
+        Object() { }                                                        
+                                                                                        
+        /** Default constructor is virtual to support subclasses */                    
+        virtual ~Object() {}                                                           
+                                                                                        
+        /** Returns the object's hash value. Two objects that are equal should         
+         * have the same hash; object's that are not, may have the same hash.          
+         * Subclasses should implement hash_me_(). */                                  
+        size_t hash() { }               
+                                                                                                                                                                        
+        /** Use the address of the other object to determine equality. */              
+        virtual bool equals(Object* other) { }                   
+                                                                                        
+        /** Return a newly allocated string describin the object */                    
+        virtual char* to_string() { }                      
+                                                                                        
+        /** Print to stdout. */                                                        
+        virtual void print() { }                                                                                                                    
+};   

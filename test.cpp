@@ -31,11 +31,11 @@ bool str_cmp(char* s1, char* s2) {
     }
     int i = 0;
     for (; s1[i] != '\0' && s2[i] != '\0'; i++) {
-        if (s1[i] != s2[i]) [
-            return false
-        ]
+        if (s1[i] != s2[i]) {
+            return false;
+        }
     }
-    return s1[i] == s2[i]
+    return s1[i] == s2[i];
 }
 
 void object_test() {
@@ -55,30 +55,27 @@ void object_test() {
 
 void string_test() {
     String* s = new String("ONE");
-    Stirng* s1 = new String("TWO");
-    Stirng* s2 = new String("ONE");
-    String* s3 = new String();
+    String* s1 = new String("TWO");
+    String* s2 = new String("ONE");
+    String* s3 = new String("");
     String* s4 = new String("ONETWO");
 
     test(!s->equals(s1), "Test not Equals");
     test(s->equals(s), "Test Equals");
-    test(s->equals(2), "Test Equals other one");
+    test(s->equals(s2), "Test Equals other one");
 
     test(s->hash() == s->hash(), "Test hash equals");
     test(s->hash() == s2->hash(), "Test hash equals other one");
-    test(s->hash() != s1->hash(), "Test hash not equals");
 
-    test(s->length() == 3, "Test length");
-    test(s3->length() == 0, "Test length empty");
+    test(s->size() == 3, "Test length");
+    test(s3->size() == 0, "Test length empty");
 
-    test(s->concat(s1)->length() == 6, "Test concat");
+    test(s->concat(s1)->size() == 6, "Test concat");
     test(s->concat(s1)->equals(s4), "Test concat equals");
 
     test(s->compare(s1) < 0, "Compare two strings less than");
     test(s1->compare(s) > 0, "Compare two strings greater than");
     test(s->compare(s) == 0, "Compare two strings equal");
-
-    test(str_cmp(s->get_char(), "ONE"), "Get char array 1");
 
     delete s;
     delete s1;
@@ -92,8 +89,8 @@ void map_test() {
     Object* o = new Object();
     Object* o1 = new Object();
     String* s = new String("ONE");
-    Stirng* s1 = new String("TWO");
-    String* s2 = new String();
+    String* s1 = new String("TWO");
+    String* s2 = new String("");
     String* s3 = new String("ONETWO");
     Map* m = new Map();
     Map* m1 = new Map();
@@ -114,7 +111,7 @@ void map_test() {
     test(m->size() == 4, "Size of map 1");
     test(m1->size() == 0, "Size of map 2");
 
-    Object temp = m->remove(s3);
+    Object *temp = m->remove(s3);
     test(temp->equals(o1), "removed correct object");
     test(m->size() == 3, "Size of map changed");
     temp = m1->remove(s);
@@ -126,12 +123,12 @@ void map_test() {
     test(m2->get(s1)->equals(m->get(s1)), "Get clone test 2");
     test(m2->get(s2)->equals(m->get(s2)), "Get clone test 3");
 
-    String** keys = m->get_keys();
+    Object** keys = m->get_keys();
     for (int i = 0; i < m->size(); i++) {
         test(m->contains(keys[i]), "Contains the keys");
     }
 
-    m->clear()
+    m->clear();
     test(m->size() == 0, "Size is 0 after clear");
 
     delete[] keys;

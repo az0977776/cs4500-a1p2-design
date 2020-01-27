@@ -1,35 +1,49 @@
-//lang::CwC
-#pragma once
-#include "object.h"
+#pragma once                                                                     
+//lang::CwC                                                                      
+#include "object.h"                                                              
+#include <stdlib.h>
 
 /**                                                                              
  * An immutable string class. Values passed in are copied and deleted            
  * upon destruction.                                                             
- */         
-class String: public Object {
-    public:
-        // constructor that takes in a char*
-        String(const char* str) {}
-
-        // destructor
-        ~String() {}
-
-        // returns the length of the string
-        int length();
-
-        // checks for equality with another object
-        bool equals(Object *other);
-
-        // returns a new concatenated string: this + o
-        virtual String* concat(String *o);
-
+ * author: mainly vitekj@me.com                                                         
+ */                                                                              
+class String : public Object {      
+    public:                       
+        /** Construct a string copying s */                                            
+        String(char* s) { }                                                                              
+                                                                                        
+        /** Construct a string copying s */                                            
+        String(const char* s) {}                                                                              
+                                                                                        
+        /** This constructor takes ownership of the char* s. The char*                 
+         *  will be delete with the string. Use with caution. The first                
+         *  argument is there to differentiate this constructor from the               
+         *  standard one. */                                                           
+        String(bool steal, char* s){ }                                                                              
+                                                                                        
+        /** Delete the string and free its data */                                     
+        ~String () { }                                                  
+                                                                                        
+        /** Compare strings for equality. */                                           
+        bool equals(Object* other) { }                                                                              
+                                                                                                
         /** Returns 0 if strings are equal, >0 if this string is larger,               
-         *  <0 otherwise */                                                          
-        virtual int compare(String* o);
-
-        // returns the underlying char*
-        virtual const char* get_char();
-
-        // hash function
-        int hash();                                                                              
-};
+         *  <0 otherwise */                                                            
+        int compare(String* tgt) { }                   
+                                                                                        
+        /** Textbook hash function on strings.   */                                    
+        size_t hash_me_() { }                                                                              
+                                                                                        
+        /** Number of non \0 characters in this string */                              
+        size_t size() { }                                                
+                                                                                        
+        /** Concatenate the strings, return a new object */                            
+        String* concat(String* other) { }                                                                              
+                                                                                        
+        /** Return a newly allocated char* with this string value */                   
+        char* to_string() { }                                  
+                                                                                        
+        /** Print this string on stdout. */                                            
+        void print() { }                             
+};         
