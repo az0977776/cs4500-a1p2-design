@@ -2,6 +2,7 @@ The Object class and the String class are taken from https://piazza.com/class/k5
 to attempt to standardize those two objects for everyone in this class
 
 Map class
+The map copies on puts (both key and value).
 Maps are a subclass of the Object class.
 Keys are always objects of the Object class and values are all objects of the Object class.
 The map has a default constructor that creates a map with no mappings and a copy constructor that takes in 

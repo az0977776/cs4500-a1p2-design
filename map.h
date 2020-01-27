@@ -2,7 +2,7 @@
 #include "object.h"
 
 // Represents a Map object of Objects to Objects
-// owns the values but does not copy on puts
+// owns the values and does copy on puts (both key and value)
 class Map : public Object {
     public:
         // default constructor
