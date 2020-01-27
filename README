@@ -2,25 +2,12 @@ Object class
 Objects have a constructor that takes no arguments, a destructor, an equality checker against another object 
 and a hash function.
 
-String class
-Strings are a subclass of the Object class.
-Strings have a constructor that takes in a const char* and a destructor.
-Strings can tell you its size.
-Strings also have an equality checker for other objects.
-Strings have a function concat that concats the string and another string passed to the function.
-Strings can be compared with other strings. The compare function compares ASCII and can return either:
-0 -> equal strings
-<0 -> the current string is less than the input 
->0 -> otherwise
-Strings can return the underlying const char *.
-Strings also have a hash function.
-
 Map class
 Maps are a subclass of the Object class.
-Keys are always objects of the String class and values are all objects of the Object class.
+Keys are always objects of the Object class and values are all objects of the Object class.
 The map has a default constructor that creates a map with no mappings and a copy constructor that takes in 
 an existing map and copies it.
-The map has a put method for putting new mappings of String->Object or updating existing mappings in the map.
+The map has a put method for putting new mappings of Object->Object or updating existing mappings in the map.
 The map has a get method to get the value associated with a key.
 The map can check if the map contains a value for a key.
 We can remove a mapping from the map.
