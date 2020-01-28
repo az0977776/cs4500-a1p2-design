@@ -112,7 +112,7 @@ void map_test() {
     test(m1->size() == 0, "Size of map 2");
 
     Object *temp = m0->remove(s3);
-    test(temp->equals(s5), "removed correct object");
+    test(s5->equals(temp), "removed correct object");
     test(m0->size() == 3, "Size of map changed");
     temp = m1->remove(s4);
     test(temp == nullptr, "remove non-existant key");
