@@ -12,7 +12,7 @@ class Map : public Object {
         // default destructor
         ~Map(){}
 
-        // is this map equal to the other map
+        // is this map equal to the object
         bool equals(Object *o);
         // associates the value with the key in this map
         void put(Object *key, Object *value);
