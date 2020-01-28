@@ -73,9 +73,9 @@ void string_test() {
     test(s->concat(s1)->size() == 6, "Test concat");
     test(s->concat(s1)->equals(s4), "Test concat equals");
 
-    test(s->compare(s1) < 0, "Compare two strings less than");
-    test(s1->compare(s) > 0, "Compare two strings greater than");
-    test(s->compare(s) == 0, "Compare two strings equal");
+    test(s->cmp(s1) < 0, "Compare two strings less than");
+    test(s1->cmp(s) > 0, "Compare two strings greater than");
+    test(s->cmp(s) == 0, "Compare two strings equal");
 
     delete s;
     delete s1;
