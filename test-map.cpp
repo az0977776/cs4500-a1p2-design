@@ -77,7 +77,7 @@ void test_contains() {
 
     delete m0;
     delete m1;
-    OK("test puts and gets");
+    OK("test contains");
 }
 
 void test_size() {
@@ -94,7 +94,7 @@ void test_size() {
 
     delete m0;
     delete m1;
-    OK("test puts and gets");
+    OK("test size");
 }
 
 void test_clear() {
@@ -172,7 +172,7 @@ void test_overwrite_puts() {
     delete o0;
     delete o1;
     delete o2;
-    OK("Map overwrite puts");
+    OK("test overwrite puts");
 }
 
 void test_get_keys() {
@@ -190,7 +190,7 @@ void test_get_keys() {
 
     delete m0;
     delete[] keys;
-    OK("Map get keys");
+    OK("test get keys");
 }
 
 int main() {
@@ -203,6 +203,15 @@ int main() {
     o0 = new Object();
     o1 = new Object();
     
+    test_puts_gets();
+    test_contains();
+    test_size();
+    test_clear();
+    test_remove();
+    test_clone_equality();
+    test_overwrite_puts();
+    test_get_keys();
+
     delete s0;
     delete s1;
     delete s2;
@@ -212,5 +221,6 @@ int main() {
     delete o0;
     delete o1;
 
+    OK("test map");
     return 0;
 }
