@@ -9,11 +9,13 @@ class Map : public Object {
         Map(){}
         // copy constructor
         Map(Map* m){}
-        // default constructor
-        virtual ~Map(){}
+        // default destructor
+        ~Map(){}
 
+        // is this map equal to the other map
+        bool equals(Object *o);
         // associates the value with the key in this map
-        virtual void put(Object *key, Object *value);
+        void put(Object *key, Object *value);
         // returns the value associated this key in the map
         Object* get(Object* key);
         // checks if the map contains a value with this key

@@ -1,4 +1,6 @@
-The Object class and the String class are taken from https://piazza.com/class/k51bluky59n2jr?cid=166
+No longer using Jan Vitek's implementation.
+
+The Object class and the String class are taken from https://piazza.com/class/k51bluky59n2jr?cid=345
 to attempt to standardize those two objects for everyone in this class
 
 Map class
