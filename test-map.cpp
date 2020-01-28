@@ -86,62 +86,74 @@ void string_test() {
 }
 
 void map_test() {
-    Object* o = new Object();
-    Object* o1 = new Object();
-    String* s = new String("ONE");
+    String* s0 = new String("ONE");
     String* s1 = new String("TWO");
     String* s2 = new String("");
     String* s3 = new String("ONETWO");
-    Map* m = new Map();
+    String* s4 = new String("foo");
+    String* s5 = new String("bar");
+    Map* m0 = new Map();
     Map* m1 = new Map();
 
-    m->put(s, o);
-    m->put(s1, o);
-    m->put(s2, o1);
-    m->put(s3, o1);
+    m0->put(s0, s4);
+    m0->put(s1, s4);
+    m0->put(s2, s5);
+    m0->put(s3, s5);
 
-    test(m->get(s)->equals(o), "Get test 1");
-    test(m->get(s1)->equals(o), "Get test 2");
-    test(m->get(s2)->equals(o1), "Get test 3");
-    test(m->get(s3)->equals(o1), "Get test 4");
+    test(m0->get(s0)->equals(s4), "Get test 1");
+    test(m0->get(s1)->equals(s4), "Get test 2");
+    test(m0->get(s2)->equals(s5), "Get test 3");
+    test(m0->get(s3)->equals(s5), "Get test 4");
 
-    test(m->contains(s), "m contains 'ONE'");
-    test(!m1->contains(s), "m1 does not contain 'ONE'");
+    test(m0->contains(s0), "m contains 'ONE'");
+    test(!m1->contains(s0), "m1 does not contain 'ONE'");
 
-    test(m->size() == 4, "Size of map 1");
+    test(m0->size() == 4, "Size of map 1");
     test(m1->size() == 0, "Size of map 2");
 
-    Object *temp = m->remove(s3);
-    test(temp->equals(o1), "removed correct object");
-    test(m->size() == 3, "Size of map changed");
-    temp = m1->remove(s);
+    Object *temp = m0->remove(s3);
+    test(temp->equals(s5), "removed correct object");
+    test(m0->size() == 3, "Size of map changed");
+    temp = m1->remove(s4);
     test(temp == nullptr, "remove non-existant key");
     test(m1->size() == 0, "Size of map 2");
 
-    Map* m2 = m->clone();
-    test(m2->get(s)->equals(m->get(s)), "Get clone test 1");
-    test(m2->get(s1)->equals(m->get(s1)), "Get clone test 2");
-    test(m2->get(s2)->equals(m->get(s2)), "Get clone test 3");
+    test(!m1->equals(m0), "check not equal");
+    Map* m2 = m0->clone();
+    test(m2->equals(m0), "check equality of clone");
+    test(m2->get(s0)->equals(m0->get(s0)), "Get clone test 1");
+    test(m2->get(s1)->equals(m0->get(s1)), "Get clone test 2");
+    test(m2->get(s2)->equals(m0->get(s2)), "Get clone test 3");
 
-    Object** keys = m->get_keys();
-    for (int i = 0; i < m->size(); i++) {
-        test(m->contains(keys[i]), "Contains the keys");
+    Object** keys = m0->get_keys();
+    for (int i = 0; i < m0->size(); i++) {
+        test(m0->contains(keys[i]), "Contains the keys");
     }
 
-    m->clear();
-    test(m->size() == 0, "Size is 0 after clear");
+    m0->clear();
+    test(m0->size() == 0, "Size is 0 after clear");
+
+    Object *o0 = new Object();
+    Object *o1 = new Object();
+    Object *o2 = new Object();
+    m0->put(o0, o1);
+    test(m0->size() == 1, "size check after adding object -> object");
+    m0->put(o0, o2);
+    test(m0->size() == 1, "size check after updating value in key-value map");
+    m0->put(o1, o2);
+    test(m0->size() == 2, "size check after adding object -> object 2");
 
     delete[] keys;
     
-    delete m;
+    delete m0;
     delete m1;
     delete m2;
-    delete s;
+    delete s0;
     delete s1;
     delete s2;
     delete s3;
-    delete o;
-    delete o1;
+    delete s4;
+    delete s5;
     OK("Map test");
 }
 
