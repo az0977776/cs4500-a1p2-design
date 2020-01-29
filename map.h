@@ -24,13 +24,13 @@ class Map : public Object {
         bool contains(Object* key);
         // returns the number of key value pairs in this map
         int size();
-        // removes the key value pair in this map
+        // removes the key-value pair in this map
+        // and returns the value
         Object* remove(Object* key);
         // clears the map
         void clear();
         // creates a clone of this map
         Map* clone();
         // returns an array of copied keys in map, not sorted
-        // call size to determine the number String*
         Object** get_keys();
 };
