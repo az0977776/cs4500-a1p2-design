@@ -12,8 +12,10 @@ class Map : public Object {
         // default destructor
         ~Map(){}
 
-        // is this map equal to the object
-        bool equals(Object *o);
+        /* Inherited from Object, generates a hash for a Map */
+        size_t hash();
+        /* Inherited from Object, checks equality between an Map and an Object */
+        bool equals(Object* const obj);
         // associates the value with the key in this map
         void put(Object *key, Object *value);
         // returns the value associated this key in the map
