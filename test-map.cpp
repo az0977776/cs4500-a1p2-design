@@ -157,21 +157,16 @@ void test_clone_equality() {
 void test_overwrite_puts() { 
     Map* m0 = new Map();
 
-    Object *o0 = new Object();
-    Object *o1 = new Object();
-    Object *o2 = new Object();
-
     m0->put(o0, o1);
     test(m0->size() == 1, "size check after adding object -> object");
+    test(m0->get(o0)->equals(o1), "checking put value");
     m0->put(o0, o2);
     test(m0->size() == 1, "size check after updating value in key-value map");
+    test(m0->get(o0)->equals(o2), "overwrite when putting with the same key");
     m0->put(o1, o2);
     test(m0->size() == 2, "size check after adding object -> object 2");
 
     delete m0;
-    delete o0;
-    delete o1;
-    delete o2;
     OK("test overwrite puts");
 }
 
@@ -193,6 +188,25 @@ void test_get_keys() {
     OK("test get keys");
 }
 
+void test_hash() {
+    Map* m0 = new Map();
+    Map* m1 = new Map();
+    test(m0->equals(m1), "equal");
+    test(m0->hash() == m1->hash(), "equal hash if equal");
+
+    m0->put(s0, s1);
+    m0->put(s1, s2);
+    m1->put(s0, s1);
+
+    test(!m0->equals(m1), "not equal");
+    m0->put(s1, s2);
+    test(m0->equals(m1), "equal");
+    test(m0->hash() == m1->hash(), "equal hash if equal");
+
+    delete m0;
+    delete m1;
+}
+
 int main() {
     s0 = new String("ONE");
     s1 = new String("TWO");
@@ -202,6 +216,7 @@ int main() {
     s5 = new String("bar");
     o0 = new Object();
     o1 = new Object();
+    o2 = new Object();
     
     test_puts_gets();
     test_contains();
@@ -220,6 +235,7 @@ int main() {
     delete s5;
     delete o0;
     delete o1;
+    delete o2;
 
     OK("test map");
     return 0;
