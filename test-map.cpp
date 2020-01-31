@@ -199,7 +199,7 @@ void test_hash() {
     m1->put(s0, s1);
 
     test(!m0->equals(m1), "not equal");
-    m0->put(s1, s2);
+    m1->put(s1, s2);
     test(m0->equals(m1), "equal");
     test(m0->hash() == m1->hash(), "equal hash if equal");
 
@@ -226,6 +226,7 @@ int main() {
     test_clone_equality();
     test_overwrite_puts();
     test_get_keys();
+    test_hash();
 
     delete s0;
     delete s1;

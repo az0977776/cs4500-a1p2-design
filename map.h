@@ -23,7 +23,7 @@ class Map : public Object {
         // checks if the map contains a value with this key
         bool contains(Object* key);
         // returns the number of key value pairs in this map
-        int size();
+        size_t size();
         // removes the key-value pair in this map
         // and returns the value
         Object* remove(Object* key);
